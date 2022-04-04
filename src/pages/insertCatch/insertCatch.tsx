@@ -2,11 +2,11 @@ import React from 'react'
 import { AppContainer, AppFooter } from '@components'
 import { AppHeader } from 'components/appHeader'
 
-export const Dashboard: React.FC = () => {
+export const InsertCatch: React.FC = () => {
   return (
     <AppContainer>
       <AppHeader />
-      <h1>Dashboard</h1>
+      <h1>InsertCatch</h1>
       <AppFooter />
     </AppContainer>
   )
