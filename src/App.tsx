@@ -7,8 +7,8 @@ import {
   UploadForm,
   Dashboard,
   NotFound,
-  ListCatches,
   InsertCatch,
+  DetailsCatch,
 } from 'pages'
 import { ProtectedRoutes, PublicRoutes } from 'helpers'
 
@@ -21,7 +21,7 @@ export const App = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="upload" element={<UploadForm />} />
           <Route path="insertCatch" element={<InsertCatch />} />
-          <Route path="listCatches" element={<ListCatches />} />
+          <Route path="detailsCatch/:id" element={<DetailsCatch />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 

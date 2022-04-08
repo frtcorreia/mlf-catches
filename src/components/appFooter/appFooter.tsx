@@ -48,13 +48,6 @@ export const AppFooter: React.FC = () => {
             icon={<Add />}
             onClick={() => onLink('/insertCatch')}
           />
-
-          <BottomNavigationAction
-            color="white"
-            label="Lista de Capturas"
-            icon={<Apps />}
-            onClick={() => onLink('/listCatches')}
-          />
         </BottomNavigation>
       </Paper>
     </Box>
