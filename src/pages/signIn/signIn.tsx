@@ -3,18 +3,14 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-import { useAuth } from '@hooks'
 import { AppContainer } from '@components'
 
 export const SignIn: React.FC = () => {
-  const { Login } = useAuth()
-
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -29,12 +25,7 @@ export const SignIn: React.FC = () => {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      Login({
-        email: values.email,
-        password: values.password,
-      })
-    },
+    onSubmit: (values) => {},
   })
 
   return (
