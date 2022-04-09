@@ -4,16 +4,13 @@ import { App } from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Routes } from 'react-router-dom'
-import { AuthProvider } from '@contexts'
 import { CssBaseline } from '@mui/material'
 
 ReactDOM.render(
   <Routes>
     <React.StrictMode>
       <CssBaseline />
-      <AuthProvider>
-        <App />
-      </AuthProvider>
+      <App />
     </React.StrictMode>
   </Routes>,
 

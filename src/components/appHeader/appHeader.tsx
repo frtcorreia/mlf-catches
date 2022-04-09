@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   AppBar,
   Box,
@@ -10,19 +11,12 @@ import {
   Typography,
   Avatar,
 } from '@mui/material'
-import AccountCircle from '@mui/icons-material/AccountCircle'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useAuth } from '@hooks'
+import { Block } from '@components'
 
 export const AppHeader: React.FC = () => {
-  const { signed, user, Logout } = useAuth()
-
+  let navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const userPhoto = `https://mlf.portugalbasstrail.pt/ficheiros/anglers/${user?.foto}`
-
-  async function handleLogOut() {
-    await Logout()
-  }
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -53,47 +47,40 @@ export const AppHeader: React.FC = () => {
           >
             MLF Portugal
           </Typography>
-          {signed ? (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <Avatar
-                  alt={`${user?.nome} ${user?.sobrenome}`}
-                  src={userPhoto}
-                />
-                <img src={userPhoto} alt="" height={20} />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem
-                  onClick={handleClose}
-                >{`https://mlf.portugalbasstrail.pt/ficheiros/anglers/filipe_1616362389.jpg`}</MenuItem>
-                <MenuItem onClick={handleLogOut}>Logout</MenuItem>
-              </Menu>
-            </div>
-          ) : (
-            <Button color="inherit">Login</Button>
-          )}
+          <Block>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <Avatar alt={'MLF PORTUGAL'} src="https://shorturl.at/drQRZ" />
+              <img src="https://shorturl.at/drQRZ" alt="" height={20} />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem
+                onClick={handleClose}
+              >{`https://mlf.portugalbasstrail.pt/ficheiros/anglers/filipe_1616362389.jpg`}</MenuItem>
+              <MenuItem onClick={() => navigate('/')}>Logout</MenuItem>
+            </Menu>
+          </Block>
         </Toolbar>
       </AppBar>
     </Box>

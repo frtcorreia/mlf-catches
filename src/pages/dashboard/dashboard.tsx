@@ -9,7 +9,6 @@ import {
 } from '@components'
 import { AppHeader } from 'components/appHeader'
 import { Grid, MenuItem, Select } from '@mui/material'
-import { api } from '@services'
 
 export interface Competition {
   id?: number
@@ -45,6 +44,21 @@ const data: CatchCardProps[] = [
   },
 ]
 
+const competitions: Competition[] = [
+  {
+    id: 1,
+    titulo: 'Prova 1',
+  },
+  {
+    id: 2,
+    titulo: 'Prova 2',
+  },
+  {
+    id: 3,
+    titulo: 'Prova 3',
+  },
+]
+
 export const Dashboard: React.FC = () => {
   const [selected, setSelected] = React.useState(0)
   const [list, setList] = React.useState<Competition[]>([])
@@ -53,18 +67,6 @@ export const Dashboard: React.FC = () => {
     console.log('handleChange', event.target.value)
     setSelected(event.target.value)
   }
-  async function handleGetData() {
-    try {
-      const response = await api.get('/competition')
-      setList(response.data.data)
-    } catch (error) {
-      console.log('GET competitions ERROR')
-    }
-  }
-
-  React.useEffect(() => {
-    handleGetData()
-  }, [])
 
   const handleOnClickCard = () => {
     navigate(`/detailsCatch/1`)
@@ -93,7 +95,7 @@ export const Dashboard: React.FC = () => {
             <MenuItem disabled value="">
               <em>Placeholder</em>
             </MenuItem>
-            {list.map((item) => (
+            {competitions.map((item) => (
               <MenuItem key={item.id} value={item.id}>
                 {item.titulo}
               </MenuItem>
