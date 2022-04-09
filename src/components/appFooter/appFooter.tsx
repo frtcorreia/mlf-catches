@@ -1,16 +1,26 @@
 import React from 'react'
-import Add from '@mui/icons-material/Add'
-import List from '@mui/icons-material/List'
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Paper,
-} from '@mui/material'
+import List from '@mui/icons-material/FormatListBulleted'
+import Add from '@mui/icons-material/AddCircle'
+import Apps from '@mui/icons-material/Apps'
+import MuiBottomNavigationAction from '@mui/material/BottomNavigationAction'
+import { BottomNavigation, Box, Paper, styled } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+
+const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
+  color: white;
+  &.Mui-selected {
+    color: red;
+  }
+`)
 
 export const AppFooter: React.FC = () => {
+  let navigate = useNavigate()
   const [value, setValue] = React.useState(0)
   const ref = React.useRef<HTMLDivElement>(null)
+
+  const onLink = (href: any) => {
+    navigate(href)
+  }
 
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
@@ -28,13 +38,15 @@ export const AppFooter: React.FC = () => {
         >
           <BottomNavigationAction
             color="white"
-            label="Add Caputura"
-            icon={<Add />}
+            label="Dashboard"
+            icon={<List />}
+            onClick={() => onLink('/dashboard')}
           />
           <BottomNavigationAction
             color="white"
-            label="Lista de Capturas"
-            icon={<List />}
+            label="Add Caputura"
+            icon={<Add />}
+            onClick={() => onLink('/insertCatch')}
           />
         </BottomNavigation>
       </Paper>

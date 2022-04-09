@@ -66,9 +66,9 @@ export const AuthProvider: React.FC = ({ children }) => {
       api.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${response.data.token}`
-
+      console.log('filipe', `Bearer ${response.data.token}`)
       sessionStorage.setItem('@App:user', JSON.stringify(response.data.user))
-      sessionStorage.setItem('@App:token', JSON.stringify(response.data.token))
+      sessionStorage.setItem('@App:token', response.data.token)
     } catch (error) {
       console.log('This user not exist or is invalid')
     }
