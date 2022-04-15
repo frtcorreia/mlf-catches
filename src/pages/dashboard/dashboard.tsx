@@ -75,8 +75,9 @@ export const Dashboard: React.FC = () => {
   return (
     <AppContainer>
       <AppHeader />
-      <Block style={{ overflow: 'hidden' }}>
+      <Block stack style={{ overflow: 'hidden' }}>
         <Block
+          stack
           fixed
           style={{
             padding: '20px',
@@ -103,10 +104,11 @@ export const Dashboard: React.FC = () => {
           </Select>
         </Block>
         <Block
+          stack
           style={{
             padding: '85px 20px 10px',
             height: 'calc(100vh - 123px)',
-            overflow: 'scroll',
+            overflowY: 'scroll',
           }}
         >
           <Grid container justifyContent={'center'}>

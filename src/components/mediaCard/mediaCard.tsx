@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Block } from '@components'
+import { Block, MediaContainer } from '@components'
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
 
 export enum MediaType {
   Video = 'video',
@@ -14,25 +15,20 @@ export interface MediaCardProps {
 
 export const MediaCard: React.FC<MediaCardProps> = (props) => {
   const { mediaType, media, cancelReason } = props
-
+  console.log(props)
   return (
-    <Block
-      style={{
-        maxWidth: '250px',
-        width: '100%',
-        margin: '10px',
-        padding: '5px',
-        backgroundColor: cancelReason ? '#f06360' : '#5cb660',
-      }}
-    >
-      <Block style={{ width: '100%' }}>
-        {mediaType === MediaType.Video ? (
-          <video src={media} />
-        ) : (
-          <img src={media} alt="" />
+    <Card sx={{ maxWidth: 250, marginBottom: '20px' }}>
+      <CardActionArea>
+        <MediaContainer mediaType={mediaType} media={media} />
+
+        {cancelReason && (
+          <CardContent style={{ backgroundColor: 'red' }}>
+            <Typography gutterBottom variant="body2" component="div">
+              Motivo: {cancelReason}
+            </Typography>
+          </CardContent>
         )}
-      </Block>
-      {cancelReason && <Block>Motivo: {cancelReason}</Block>}
-    </Block>
+      </CardActionArea>
+    </Card>
   )
 }
