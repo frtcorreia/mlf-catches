@@ -12,6 +12,7 @@ import {
   Avatar,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import LogoutIcon from '@mui/icons-material/Logout'
 import { Block } from '@components'
 
 export const AppHeader: React.FC = () => {
@@ -47,39 +48,12 @@ export const AppHeader: React.FC = () => {
           >
             MLF Portugal
           </Typography>
-          <Block>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <Avatar alt={'MLF PORTUGAL'} src="https://shorturl.at/drQRZ" />
-              <img src="https://shorturl.at/drQRZ" alt="" height={20} />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem
-                onClick={handleClose}
-              >{`https://mlf.portugalbasstrail.pt/ficheiros/anglers/filipe_1616362389.jpg`}</MenuItem>
-              <MenuItem onClick={() => navigate('/')}>Logout</MenuItem>
-            </Menu>
+          <Block style={{ fontSize: '17px', fontWeight: 500 }}>
+            Sair
+            <LogoutIcon
+              style={{ marginLeft: '5px', paddingLeft: '2px' }}
+              fontSize={'small'}
+            />
           </Block>
         </Toolbar>
       </AppBar>

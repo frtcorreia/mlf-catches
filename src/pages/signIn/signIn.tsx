@@ -5,27 +5,44 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import * as yup from 'yup'
 import { useFormik } from 'formik'
-
+import * as Yup from 'yup'
 import { AppContainer } from '@components'
+import { useAxios } from '@hooks'
+import { Alert } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import { useDispatch } from 'react-redux'
+import { changeUser } from 'store/Auth/authSlice'
 
 export const SignIn: React.FC = () => {
-  const validationSchema = yup.object({
-    email: yup
-      .string()
-      .email('Insira um email valido')
-      .required('Insira o seu email'),
-    password: yup.string().required('Insira a sua password'),
-  })
+  const dispatch = useDispatch()
+  const { sendData, error, response, loading } = useAxios()
+
+  React.useEffect(() => {
+    response && response.data.user && dispatch(changeUser(response.data.user))
+  }, [response])
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {},
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Endereço email invalido')
+        .required('Preenchimento obrigatório!!!'),
+      password: Yup.string().required('Preenchimento obrigatório!!!'),
+    }),
+    onSubmit: (values) => {
+      sendData({
+        method: 'POST',
+        url: '/auth',
+        data: {
+          email: values.email,
+          password: values.password,
+        },
+      })
+    },
   })
 
   return (
@@ -50,10 +67,11 @@ export const SignIn: React.FC = () => {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
+          {error && <Alert severity="error">Erro de autenticação</Alert>}
+
           <form onSubmit={formik.handleSubmit}>
             <TextField
               margin="normal"
-              required
               fullWidth
               id="email"
               label="Email"
@@ -67,7 +85,6 @@ export const SignIn: React.FC = () => {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               id="password"
               name="password"
@@ -79,9 +96,16 @@ export const SignIn: React.FC = () => {
               helperText={formik.touched.password && formik.errors.password}
               style={{ marginBottom: '30px' }}
             />
-            <Button color="primary" variant="contained" fullWidth type="submit">
+            <LoadingButton
+              loading={loading}
+              loadingPosition="end"
+              color="primary"
+              variant="contained"
+              fullWidth
+              type="submit"
+            >
               Entrar
-            </Button>
+            </LoadingButton>
           </form>
         </Box>
       </Container>

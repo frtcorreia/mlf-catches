@@ -12,7 +12,8 @@
       "@utils": ["./utils"],
       "@helpers": ["./helpers"],
       "@contexts": ["./contexts"],
-      "@styles": ["./styles"]
+      "@styles": ["./styles"],
+      "@store": ["./store"]
     }
   }
 }

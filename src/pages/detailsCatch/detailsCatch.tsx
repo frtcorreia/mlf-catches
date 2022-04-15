@@ -27,7 +27,7 @@ const data: MediaCardProps[] = [
   },
   {
     media:
-      'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
+      'https://cdn.glitch.me/cbf2cfb4-aa52-4a1f-a73c-461eef3d38e8/1080.mp4',
     mediaType: MediaType.Video,
   },
 ]
@@ -56,10 +56,10 @@ export const DetailsCatch: React.FC = () => {
   return (
     <AppContainer>
       <AppHeader />
-      <Block style={{ alignItems: 'center', paddingTop: '50px' }}>
+      <Block stack style={{ alignItems: 'center', paddingTop: '50px' }}>
         {renderAlert(status)}
       </Block>
-      <Block style={{ alignItems: 'center', paddingTop: '20px' }}>
+      <Block stack style={{ alignItems: 'center', paddingTop: '20px' }}>
         {data.map((item, i) => (
           <MediaCard
             key={i}

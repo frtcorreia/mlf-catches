@@ -73,11 +73,13 @@ export const CatchCard: React.FC<CatchCardProps> = (props) => {
 
   return (
     <Block
+      stack
       style={{ maxWidth: '250px', width: '100%', margin: '15px' }}
       onClick={onClick}
     >
       <Badge color={state.status} badgeContent={handleReturnIcon(state.value)}>
         <Block
+          stack
           style={{
             width: '100%',
             backgroundColor: 'white',
@@ -85,10 +87,10 @@ export const CatchCard: React.FC<CatchCardProps> = (props) => {
             overflow: 'hidden',
           }}
         >
-          <Block>
+          <Block stack>
             <img src={image} alt="" />
           </Block>
-          <Block style={{ textAlign: 'center' }}>
+          <Block stack style={{ textAlign: 'center' }}>
             Ver Captura <strong>({state.label})</strong>
           </Block>
         </Block>

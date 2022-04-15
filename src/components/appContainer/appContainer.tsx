@@ -1,5 +1,24 @@
-import { Container } from './appContainer.styles'
+import { Block } from '@components'
+import React from 'react'
 
-export const AppContainer: React.FC = ({ children }) => {
-  return <Container>{children}</Container>
+interface AppContainerProps {
+  style?: React.CSSProperties
+}
+
+export const AppContainer: React.FC<AppContainerProps> = ({
+  style,
+  children,
+}) => {
+  return (
+    <Block
+      stack
+      style={{
+        backgroundColor: '#131a22',
+        paddingTop: '65px',
+        ...style,
+      }}
+    >
+      {children}
+    </Block>
+  )
 }
